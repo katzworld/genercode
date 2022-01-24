@@ -1,5 +1,4 @@
-// these are the variables you can use as inputs to your algorithms
-// console.log(fxhash); // the 64 chars hex number fed to your algorithm
+// Jimmie Wagmi code for the memes 
 const keysToIt = pb.hash;
 
 const numRegex = /\d/g;
@@ -11,19 +10,19 @@ const frameSet = Math.round(resultWordRegex / resultNumRegex) * 1.87;
 const strWght = resultNumRegex / resultWordRegex;
 
 const jimX = pb.randint(0, 110); //slide on that bottom screen
-const agmiX = pb.randint(0, 250); //slide on that bottom screen
-const agmiY = pb.randint(0, 100); //slide on that bottom screen
+const agmiX = pb.randint(0, 250); // 
+const agmiY = pb.randint(0, 100); //
 var colors = [];
 while (colors.length < 1024) {
   do {
-    var color = Math.floor(Math.random() * 1000000 + 1);
+    var color = Math.floor(pb.random() * 1000000 + 1);  // kept missing this 
   } while (colors.indexOf(color) >= 0);
-  colors.push("#" + ("0" + color.toString(16)).slice(-6));
+  colors.push("#" + (keysToIt + color.toString(16)).slice(-6));  // changed to push with pb.hash
 }
 // console.log(colors);
 // console.log(pb.randint(0, colors.length));
-const coinFill = colors[pb.randint(0, colors.length)];
-const coinInFill = colors[pb.randint(0, colors.length)];
+const coinFill = colors[pb.randint(0, colors.length)];  // grabs some colors from that list 
+const coinInFill = colors[pb.randint(0, colors.length)]; // works pretty good
 const coinInStroke = colors[pb.randint(0, colors.length)];
 const coinOutStroke = colors[pb.randint(0, colors.length)];
 const waveFill = colors[pb.randint(0, colors.length)];
@@ -31,7 +30,7 @@ const waveStroke = colors[pb.randint(0, colors.length)];
 const waveBackdrop = colors[pb.randint(0, colors.length)];
 
 const canvas = {
-  x: 512,
+  x: 512,  //box pixel 
   y: 512,
   mute: pb.randint(0, 256),
 };
@@ -52,7 +51,7 @@ function setup() {
   jimmie(jimX); //(60,90);
 }
 
-function wagmiWave(xoff, yoff) {
+function wagmiWave(xoff, yoff) {  // makes the wave pattern overlaps with DIFF coloring 
   blendMode(DIFFERENCE);
   background(waveBackdrop);
   stroke(waveStroke);
@@ -118,9 +117,9 @@ function wagmi(wagmiX, wagmiY) {
   pop();
 }
 
-function jimmie(x) {
-  push();
-  translate(x, 110);
+function jimmie(x) { // setup and draw out a jimmie will prob 
+  push(); // change this later to make it something more constructor or clas 
+  translate(x, 110); // lots of vairables and points 
   strokeWeight(strWght * 3.14);
   //ears
   stroke("black");
@@ -252,4 +251,5 @@ function jimmie(x) {
   pop();
 }
 
-function draw() {} //nah dog I got this
+function draw() {} //nah dog I got this one and done homey
+

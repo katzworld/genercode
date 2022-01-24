@@ -1,4 +1,4 @@
-//polyblock.io 
+//polyblock.io latest setup with the rand int 
 
 window.pb = {
 	hash: Array(32).fill(0).map(_=>"123456789abcdefghijkmnopqrstuvwxyz"[(Math.random()*32)|0]).join("") 

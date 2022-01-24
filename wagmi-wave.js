@@ -1,5 +1,4 @@
-// these are the variables you can use as inputs to your algorithms
-// console.log(fxhash); // the 64 chars hex number fed to your algorithm
+
 const keysToIt = pb.hash;
 const numRegex = /\d/g;
 const wordRegex = /\D/g;
@@ -11,7 +10,7 @@ const strWght = resultNumRegex / resultWordRegex;
 const colors = [];
 while (colors.length < 1024) {
   do {
-    var color = Math.floor(pb.random()  * 100000 + 1);
+    var color = Math.floor(pb.random()  * 100000 + 1);  
   } while (colors.indexOf(color) >= 0);
   colors.push("#" + (keysToIt + color.toString(18)).slice(-6));
 }
@@ -31,8 +30,8 @@ const canvas = {
   y: 1024,
   mute: pb.randint(0, 256),
 };
-const agmiX = pb.randint(0, canvas.y/2); //slide on that bottom screen
-const agmiY = pb.randint(0, canvas.x/2); //slide on that bottom screen
+const agmiX = pb.randint(0, canvas.y/2); //slide on that screen
+const agmiY = pb.randint(0, canvas.x/2); //slide on that screen
 
 function setup() {
   createCanvas(canvas.x, canvas.y);
@@ -47,7 +46,7 @@ function setup() {
 
 }
 
-function wagmiWave(xoff, yoff) {
+function wagmiWave(xoff, yoff) {  //wave /noise setup 
    blendMode(DIFFERENCE);
   background(waveBackdrop);
   stroke(waveStroke);
