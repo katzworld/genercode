@@ -1,30 +1,24 @@
 const keysToIt = pb.hash;
-const numRegex = /\d/g;
-const wordRegex = /\D/g;
-const resultNumRegex = keysToIt.match(numRegex).length;
-const resultWordRegex = keysToIt.match(wordRegex).length;
-const keysLength = keysToIt.length;
-const frameSet = Math.round(resultWordRegex / resultNumRegex) * 1.87;
-const strWght = resultNumRegex / resultWordRegex;
+const numRegex = /[0-9]/g;
+const resultNumRegex = keysToIt.match(numRegex);
 
-
+console.log(resultNumRegex);
 
 //make colors seems to show off some wild ones 
 const colors = [];
-while (colors.length < 1024) {
+while (colors.length < 128) {
   do {
-    var color = Math.floor(pb.random()  * 100000000 + 1);
+    var color = Math.floor(pb.random()  * 10000000 + 1);
   } while (colors.indexOf(color) >= 0);
-  colors.push("#" + ('00000' + keysToIt + color.toString(13)).slice(-6));
+  colors.push("#" + ('0000000' + keysToIt + color.toString(12)).slice(-6));
 }
 
-let noiseVal;
- let noiseScale = 0.02;
-//setup workspace  
+console.log(colors);
+
 
 const workSpace = {
-  x: 1024,
-  y: 1024,
+  x: 512,
+  y: 512,
   mute: pb.randint(0, 256),
   backgroundMain: colors[pb.randint(0, colors.length - 1)],
 
@@ -32,30 +26,39 @@ const workSpace = {
 
 function setup() {
   createCanvas(workSpace.x, workSpace.y);
-  colorMode(HSB, workSpace.mute);
-  drop();
+  colorMode(RGB, workSpace.mute);
   background(workSpace.backgroundMain);
-  
+  rectMode(CENTER);
+ drop(); 
+}
+function boxSize() {
+   return resultNumRegex[(pb.randint(0,resultNumRegex.length-1))];
+}
+function giveMeColor(){
+  return colors[pb.randint(0, colors.length - 1)]
+
+}
+console.log(giveMeColor());
+console.log(boxSize());
+function drop() {
+    for (i = 0; i < colors.length-1; i++){
+    for (j = 0; j < colors.length-1; j++){
+    fill(colors[j]);
+    strokeWeight(boxSize());
+    stroke(giveMeColor());
+    //erase();
+    triangle(j*10,i*10,i*10,j*10,boxSize()*j,boxSize()*i);
+    // noErase();
+    // fill(colors[i]);
+    // rect(i*50,j*25,boxSize()*60)
+     blendMode(DIFFERENCE);
+      // blendMode(H);
+  }
+}
 }
 
-function drop() {
-  for (let y = 0; y < height; y++) {
-    for (let x = 0; x < width / 2; x++) {
-      noiseDetail(2, 0.2);
-      noiseVal = noise((pb.random() + x) * noiseScale, (pb.random() + y) * noiseScale);
-      blendMode(DIFFERENCE);
-      stroke(noiseVal * 128);
-      point(x, y);
-      noiseDetail(8, 0.65);
-      noiseVal = noise(
-        (pb.random() + x + width) * noiseScale,
-        (pb.random() + y) * noiseScale
-      );
-      stroke(noiseVal * 255);
-      point(x + width / 2, y);
-    }
-  }
-  
+function draw(){
 }
+
 
 console.log(workSpace.backgroundMain)
